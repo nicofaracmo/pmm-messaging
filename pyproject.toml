@@ -1,18 +1,41 @@
-[project]
+[tool.poetry]
 name = "pmm-messaging"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Nico Fara"}
-]
+description = "Insights → Personas → JTBD → Positioning → Messaging assistant (Streamlit + LangChain/OpenAI)"
+authors = ["Nico Fara <nico@productmarketpro.com>"]
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-]
+packages = [{ include = "pmm_messaging" }]
 
-[tool.poetry]
-packages = [{include = "pmm_messaging", from = "src"}]
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.38.0"
+pandas = "^2.2.3"
+numpy = "^2.1.1"
+pydantic = "^2.8.2"
+python-dotenv = "^1.0.1"
+openai = "^1.47.0"
+langchain = "^0.2.14"
+langchain-openai = "^0.1.22"
+tiktoken = "^0.7.0"
+pypdf = "^4.3.1"
+beautifulsoup4 = "^4.12.3"
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+ruff = "^0.6.9"
+isort = "^5.13.2"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.isort]
+profile = "black"
+
+[tool.poetry.scripts]
+pmm-app = "pmm_messaging.app:main"
